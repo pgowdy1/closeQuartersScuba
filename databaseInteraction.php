@@ -32,12 +32,7 @@
 	if(!mysql_select_db($username, $database)){
 		die('Could not select database: ' . mysql_error());
 	}
-	if($updateVar == 1){
-		$sqlQuery = "INSERT INTO GEAR(name,brand,price,type) ".
-	 				"VALUES ('$name','$brand','$price','$type') ";
-		$retval = mysql_query($sqlQuery,$database);
-	}
-		
+			
 	/* ---------------------------------------------------------*/
 	/* -- Database Query Fcns									*/
 	/* -- ------------------------------------------------------*/
@@ -55,13 +50,6 @@
 		$sqlQuery = "SELECT * FROM GEAR"; 
 		return mysql_query($sqlQuery,$database); 
 	}
-	/*
-	function AddGearData($database){
-		$sqlQuery = 'INSERT INTO GEAR(name,brand,price,type) '.
-	 				'VALUES ("TEST","TEST","TEST","TEST") ';
-		$retval = mysql_query($sqlQuery,$database);
-	}
-	*/
 	
 	/* ---------------------------------------------------------*/
 	/* -- Construct HTML Objects								*/
@@ -162,8 +150,7 @@
 		echo '</div>'; 
 		
 	}
-	
-	
+		
 	/* ---------------------------------------------------------*/
 	/* -- Logic for Updating in Real Time						*/
 	/* -- ------------------------------------------------------*/

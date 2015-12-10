@@ -1,17 +1,18 @@
 <?php
-/* ---------------------------------------------------------*/
+ 	
+	/* ---------------------------------------------------------*/
 	/* -- PHP SETUP ROOT PATH									*/
 	/* -- ------------------------------------------------------*/
 	$mRootpath = "";
 	$mFilepath = explode('/',dirname(__DIR__));
 	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
 	define('ROOT_PATH', $mRootpath);
-	//include ROOT_PATH.'databaseAccessFunctions.php';
+	
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -22,6 +23,77 @@
     <meta name="author" content="">
 
     <title>Courses</title>
+    
+    <!-- JQuery Library -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+    
+    <!-- AJAX Construction Call -->
+    <script type="text/javascript">
+    var nameVar = "";
+    var modelNumVar = "";
+    var brandVar = "";
+    var priceVar = ""; 
+    var typeVar = ""; 
+    
+    function AjaxPost_Construct(constructionType, updateVar){   
+    	$.post("databaseInteraction.php", {constructiontype: constructionType, update: updateVar}, function(data,status){
+ 
+    		    if(constructionType == 'gearTable'){    				 
+    				$('#gearTable').html(data);   			 
+    			}else if(constructionType == 'finsTable'){   			 
+    				$('#gearTable').html(data); 
+    			}
+    			else if(constructionType == 'snorkelsTable'){
+    				$('#gearTable').html(data);
+    			}
+    		
+    	});   		       	
+    }
+    
+    function AjaxComplex_Construct(constructionType, updateVar){
+    	$.post("databaseInteraction.php", {constructiontype: constructionType, update: updateVar, modelNum: modelNumVar, name: nameVar, brand: brandVar, price: priceVar, type: typeVar}, function(data,status){   		
+    		if(constructionType == 'gearTable' && updateVar == 1){      					
+    			$('#gearTable').html(data);
+    		}
+    	}); 
+    }
+        
+    </script>
+    
+    <!-- JQuery Functions -->
+    <script type="text/javascript">
+    	function showTable(){	AjaxPost_Construct('gearTable',0);}
+    	function hideTable(){	$('#gearTable').html('');}
+    	function showFinsTable() {	AjaxPost_Construct('finsTable',0);}
+    	function showSnorkelsTable() {	AjaxPost_Construct('snorkelsTable',0);}  	    	   	
+    </script>
+ 
+	<!-- JQuery Event Handlers -->
+	<script type="text/javascript">
+		$(document).ready(function(){			
+			showTable();
+			
+			$('body').on('click','#allButton',function(e){
+			e.preventDefault();
+			hideTable();
+			showTable(); 
+			}); 
+			
+			$('body').on('click','#finsButton',function(e){
+				e.preventDefault();
+				hideTable();
+				showFinsTable(); 
+			}); 
+			
+			$('body').on('click','#snorkelsButton',function(e){
+				e.preventDefault();
+				hideTable();
+				showSnorkelsTable();
+			});
+			 
+		});					
+	</script>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +130,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.php">Close Quarters Scuba</a>
+                <a class="navbar-brand" href="index.html">Close Quarters Scuba</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -92,10 +164,13 @@
 		<div class="row">
 			<div class="box aut">
 				<div class="col-md-2">
-					<button type="button" class="btn btn-primary btn-block btn-lg">Fins</button>
+					<button id="allButton" type="button" class="btn btn-primary btn-block btn-lg">All</button>
 				</div>
 				<div class="col-md-2">
-					<button type="button" class="btn btn-primary btn-block btn-lg">Snorkels</button>
+					<button id="finsButton" type="button" class="btn btn-primary btn-block btn-lg">Fins</button>
+				</div>
+				<div class="col-md-2">
+					<button id="snorkelsButton" type="button" class="btn btn-primary btn-block btn-lg">Snorkels</button>
 				</div>
 				<div class="col-md-2">
 					<button type="button" class="btn btn-primary btn-block btn-lg">Masks</button>
@@ -111,29 +186,8 @@
 		</div>
     </div>
     
-    <div class="container">
-    	<div class="row">
-    		<div class="box">
-    			<div class="col-md-12">
-    				<div class="table-responsive">
-    					<table class="table table-hover">
-    						    <tr>
-    								<th>Model Number</th>
-    								<th>Name</th>
-    								<th>Brand</th>
-    								<th>Price</th>
-    							</tr> 
-    							<tr>
-    								<td>1</td>
-    								<td>SX-12 Pro</td>
-    								<td>ScubaPro</td>
-    								<th>$299.99</th>
-    							</tr>   				
-    					</table>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
+    <div id="gearTable">
+    	<!-- Gear Table Goes Here -->
     </div>
     <!-- /.container -->
 

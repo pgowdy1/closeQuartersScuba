@@ -3,7 +3,7 @@
 	 
 	$username = $_POST['u_name_textbox'];
 	$password = $_POST['password_textbox'];
-	
+	 
 	/* ---------------------------------------------------------*/
 	/* -- PHP SETUP ROOT PATH									*/
 	/* -- ------------------------------------------------------*/
@@ -11,7 +11,6 @@
 	$mFilepath = explode('/',dirname(__DIR__));
 	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
 	define('ROOT_PATH', $mRootpath);
-	//include ROOT_PATH.'databaseAccessFunctions.php';
 	
 	/* ---------------------------------------------------------*/
 	/* -- PHP ERROR REPORTING									*/
@@ -22,59 +21,79 @@
 	/* ---------------------------------------------------------*/
 	/* -- PHP DATABASE CONNECTION 								*/
 	/* -- ------------------------------------------------------*/
-	$database = @mysql_connect('mysql.eecs.ku.edu', $username, $password);
-	if(!$database) {
-		die('Could not connect: ' . mysql_error());
-	}
-	if(!mysql_select_db($username, $database)){
-		die('Could not select database: ' . mysql_error());
-	}
 	
-	echo "<br clear=\"all\" />";
-	
-	echo "<pre>";
-	var_dump($_POST); //var_dump dispalys the contents of an array. 
-	echo "</pre>";
-
-	if(isset($_POST['u_name_textbox'])){
-		$uname_var		=  mysql_real_escape_string($_POST['u_name_textbox']); //mysql_real_escape_string built in function to prevent injection
-	}else{
-		$uname_var		=  "dont let me in";
-	}
-	
-	if(isset($_POST['password_textbox'])){
-		$password_var		=  mysql_real_escape_string($_POST['password_textbox']);
-	}else{
-		$password_var		=  "dont let me in";
-	}	
-		
-	$sql="SELECT * FROM ADMINLOGIN WHERE uname='$uname_var' AND password='$password_var'";
-	$result = mysql_query($sql, $database);   
+	 
+	/*  
 	if(!$result){	
 		echo mysql_errno($database) . ": " . mysql_error($database). "<br />";	
 		echo $sql . "<br />";	
 		return;
 	}
-	
-	if(mysql_num_rows($result) > 0 ){
+	*/
+	/*
+	$msg ='';
+	if(isset($username, $password)){
+		ob_start(); 
+			include('../config.php');
+			$myusername = stripslashes($username);
+			$mypassword = stripslashes($password);
+			$myusername = mysql_real_escape_string($dbC, $myusername);
+			$mypassword = mysqli_real_escape_string($dbc, $mypassowrd);
+			
+			$sql = "SELECT * FROM ADMINLOGIN WHERE uname='$myusername' AND password='$mypassword'";
+			
+			$result=mysqli_query($dbC, $sql);
+    		// Mysql_num_row is counting table row
+    		$count=mysqli_num_rows($result);
+    			// If result matched $myusername and $mypassword, table row must be 1 row
+    			if($count==1){
+       			 // Register $myusername, $mypassword and redirect to file "admin.php"
+       				session_register("admin");
+        			session_register("password");
+        			$_SESSION['name']= $myusername;
+        			header("location:index.php");
+    			}
+    			else{
+        			$msg = "Wrong Username or Password. Please retry";
+        			header("location:../index.php?msg=$msg");
+    			}
+    			ob_end_flush();
+    			
+    else{
+    	header("location:login.php?msg=Please enter some username and password");
+	}
+	*/
 		//The user entered a login that is in the ADMINLOGIN database.
+		
+		/*
 		echo "<pre>";
 		echo "Successful Login. You can now update the inventory.";
 		echo "</pre>";	
-	}else{
-		echo "<pre>";
-		echo "Unsuccessful. Please try again.";
-		echo "</pre>";
-	}
 	
-	while($row=mysql_fetch_array($result)){
-		echo "<pre>";
-		//var_dump($row);
-		echo $row[0];    
-		echo "</pre>";
+		$databaseTest = @mysql_connect('mysql.eecs.ku.edu', '$username', '$password');
+		if(!$databaseTest) {
+			die('Could not connect: ' . mysql_error());
+		}
+		if(!mysql_select_db($username, $databaseTest)){
+			die('Could not select database: ' . mysql_error());
+		}
 		
-	}
-	/*
+		if(isset($_POST['u_name_textbox'])){
+			$uname_var		=  mysql_real_escape_string($_POST['u_name_textbox']); //mysql_real_escape_string built in function to prevent injection
+		}else{
+			$uname_var		=  "dont let me in";
+		}
+	
+		if(isset($_POST['password_textbox'])){
+			$password_var		=  mysql_real_escape_string($_POST['password_textbox']);
+		}else{
+			$password_var		=  "dont let me in";
+		}	
+		*/
+	
+	
+		
+		/*
 	$sql="SELECT * FROM ADMINLOGIN";
 	$result = mysql_query($sql, $database);   
 	if(!$result){
@@ -106,7 +125,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Business Casual - Start Bootstrap Theme</title>
+    <title>Admin Home</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -153,21 +172,12 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="courses.php">Courses</a>
-                    </li>
-                    <li>
-                        <a href="trips.php">Trips</a>
-                    </li>
-                    <li>
-                        <a href="photography.php">Photography</a>
-                    </li>
-					<li>
 						<a href="gear.php">Gear</a>
 					</li>
 					<li>
-						<a href="staff.php">Staff</a>
+						<a href="../index.php">Exit Admin Mode</a>
 					</li>
-                </ul>
+				</ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -225,5 +235,5 @@
 </html>
 
 <?php
-mysql_close($database);
+mysql_close($databaseTest);
 ?>

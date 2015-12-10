@@ -7,8 +7,7 @@
 	$mFilepath = explode('/',dirname(__DIR__));
 	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
 	define('ROOT_PATH', $mRootpath);
-	//include ROOT_PATH.'databaseAccessFunctions.php';
-	
+		
 ?>
 
 

@@ -1,3 +1,14 @@
+<?php
+ 	
+	/* ---------------------------------------------------------*/
+	/* -- PHP SETUP ROOT PATH									*/
+	/* -- ------------------------------------------------------*/
+	$mRootpath = "";
+	$mFilepath = explode('/',dirname(__DIR__));
+	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
+	define('ROOT_PATH', $mRootpath);
+	
+?>
 
 
 <!DOCTYPE html>
@@ -19,25 +30,56 @@
     
     <!-- AJAX Construction Call -->
     <script type="text/javascript">
-    var updateCounter = 0; 
+    var nameVar = "";
+    var modelNumVar = "";
+    var brandVar = "";
+    var priceVar = ""; 
+    var typeVar = ""; 
     
-    function AjaxPost_Construct(constructionType){   
-    	$.post("databaseInteraction.php", {constructiontype: constructionType}, function(data,status){
-    		if(constructionType == 'gearTable'){
-    			$('#gearTable').html(data);   			 
-    		}else if(constructionType == 'finsTable'){   			 
-    			$('#gearTable').html(data); 
-    		}
+    function AjaxPost_Construct(constructionType, updateVar){   
+    	$.post("databaseInteraction.php", {constructiontype: constructionType, update: updateVar}, function(data,status){
+ 
+    		    if(constructionType == 'gearTable'){    				 
+    				$('#gearTable').html(data);   			 
+    			}else if(constructionType == 'finsTable'){   			 
+    				$('#gearTable').html(data); 
+    			}
+    			else if(constructionType == 'snorkelsTable'){
+    				$('#gearTable').html(data);
+    			}
+    		
     	});   		       	
     }
     
+    function AjaxComplex_Construct(constructionType, updateVar){
+    	$.post("databaseInteraction.php", {constructiontype: constructionType, update: updateVar, modelNum: modelNumVar, name: nameVar, brand: brandVar, price: priceVar, type: typeVar}, function(data,status){   		
+    		if(constructionType == 'gearTable' && updateVar == 1){      					
+    			$('#gearTable').html(data);
+    		}
+    	}); 
+    }
+        
     </script>
     
     <!-- JQuery Functions -->
     <script type="text/javascript">
-    	function showTable(){	AjaxPost_Construct('gearTable');}
+    	function showTable(){	AjaxPost_Construct('gearTable',0);}
     	function hideTable(){	$('#gearTable').html('');}
-    	function showFinsTable() {	AjaxPost_Construct('finsTable');}
+    	function showFinsTable() {	AjaxPost_Construct('finsTable',0);}
+    	function showSnorkelsTable() {	AjaxPost_Construct('snorkelsTable',0);}  	    	   	
+    </script>
+    
+    <!-- JQuery Database Changes -->
+    <script type="text/javascript">
+    	function addGear(){
+ 			   		 
+    		nameVar = document.getElementById("nameField").value;    		
+    		brandVar = document.getElementById("brandField").value; 
+    		priceVar = document.getElementById("priceField").value;
+    		typeVar = document.getElementById("typeField").value;     	 
+    		AjaxComplex_Construct('gearTable',1); 
+    		  				
+    	}
     </script>
 
 	<!-- JQuery Event Handlers -->
@@ -45,10 +87,29 @@
 		$(document).ready(function(){			
 			showTable();
 			
+			$('body').on('click','#allButton',function(e){
+			e.preventDefault();
+			hideTable();
+			showTable(); 
+			}); 
+			
 			$('body').on('click','#finsButton',function(e){
 				e.preventDefault();
 				hideTable();
 				showFinsTable(); 
+			}); 
+			
+			$('body').on('click','#snorkelsButton',function(e){
+				e.preventDefault();
+				hideTable();
+				showSnorkelsTable();
+			});
+			
+			$('body').on('click','#submitButton',function(e){
+				e.preventDefault();				 
+				hideTable();
+				addGear();
+				showTable(); 
 			}); 
 		});					
 	</script>
@@ -96,22 +157,10 @@
                     <li>
                         <a href="index.php">Home</a>
                     </li>
-                    <li>
-                        <a href="courses.php">Courses</a>
-                    </li>
-                    <li>
-                        <a href="trips.php">Trips</a>
-                    </li>
-                    <li>
-                        <a href="photography.php">Photography</a>
-                    </li>
-					<li>
+                     <li>
 						<a href="gear.php">Gear</a>
 					</li>
-					<li>
-						<a href="staff.php">Staff</a>
-					</li>
-                </ul>
+				</ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -122,10 +171,13 @@
 		<div class="row">
 			<div class="box aut">
 				<div class="col-md-2">
+					<button id="allButton" type="button" class="btn btn-primary btn-block btn-lg">All</button>
+				</div>
+				<div class="col-md-2">
 					<button id="finsButton" type="button" class="btn btn-primary btn-block btn-lg">Fins</button>
 				</div>
 				<div class="col-md-2">
-					<button type="button" class="btn btn-primary btn-block btn-lg">Snorkels</button>
+					<button id="snorkelsButton" type="button" class="btn btn-primary btn-block btn-lg">Snorkels</button>
 				</div>
 				<div class="col-md-2">
 					<button type="button" class="btn btn-primary btn-block btn-lg">Masks</button>
@@ -141,7 +193,7 @@
 		</div>
     </div>
     
-    <div id="gearTable" class="container">
+    <div id="gearTable">
     	<!-- Gear Table Goes Here -->
     </div>
    
@@ -149,21 +201,31 @@
    		<div class="row">
    			<div class="box">
    				<div class="col-md-12">
-   					<form method="post" action="gear.php">
-   						<label>Model#</label>
-   						<input type="text" name="model#_textbox">
-   						
+   					<form name="itemAddForm" method="post" action="gear.php">
+   						   						
    						<label>Name</label>
-   						<input type="text" name="name_textbox">
+   						<input id="nameField" type="text" name="name_textbox">
    						
    						<label>Brand</label>
-   						<input type="text" name="brand_textbox">
+   						<input id="brandField" type="text" name="brand_textbox">
    						
    						<label>Price</label>
-   						<input type="text" name="price_textbox">
+   						<input id="priceField" type="text" name="price_textbox">
    						
-   						 <button type="submit">Submit</button>
+   						<label>Type</label>
+   						<input id="typeField" type="text" name="type_textbox">
+   																
+   						<button id="submitButton" type="submit">Submit</button>
    					</form>
+   				</div>
+   				<div class="col-md-12"> <br>
+   					<p>Note - In the Type field please enter one of the following:<br>
+   						fins <br>
+   						snorkels <br>
+   						masks <br>
+   						bcds <br>
+   						wetsuits <br>	
+   					</p>
    				</div>
    			</div>
    		</div>
