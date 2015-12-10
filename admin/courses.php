@@ -1,3 +1,15 @@
+<?php
+/* ---------------------------------------------------------*/
+	/* -- PHP SETUP ROOT PATH									*/
+	/* -- ------------------------------------------------------*/
+	$mRootpath = "";
+	$mFilepath = explode('/',dirname(__DIR__));
+	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
+	define('ROOT_PATH', $mRootpath);
+	//include ROOT_PATH.'databaseAccessFunctions.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,13 +21,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Staff</title>
+    <title>Courses</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/closequarters.css" rel="stylesheet">
+    <link href="../css/closequarters.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -32,8 +44,8 @@
 
 <body>
 
-    <div class="brand">Staff</div>
-   
+    <div class="brand">Courses</div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -50,24 +62,24 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="courses.html">Courses</a>
+                        <a href="courses.php">Courses</a>
                     </li>
                     <li>
-                        <a href="trips.html">Trips</a>
+                        <a href="trips.php">Trips</a>
                     </li>
                     <li>
-                        <a href="photography.html">Photography</a>
+                        <a href="photography.php">Photography</a>
                     </li>
 					<li>
-						<a href="gear.html">Gear</a>
+						<a href="gear.php">Gear</a>
 					</li>
 					<li>
-						<a href="staff.html">Staff</a>
+						<a href="staff.php">Staff</a>
 					</li>
                 </ul>
             </div>
@@ -79,89 +91,56 @@
     <div class="container">
 
         <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Staff                        
-                    </h2>
-                    <hr>
+            <div class="box" >
+                <div class="col-md-12">          
+                    <h2 class="text-left-side">
+                        <strong>Courses</strong>
+                    </h2> 
+                </div>             
+                <div class="col-md-12">
+                    <p>Rescue Diver</p>
+					
+						<ul>Description:</ul>
+						<ul>Pre-Requisites:</ul>
+						<ul>Price:</ul>
+						<ul>Date Offered:</ul>
+						<ul>Instructor:</ul>
+						
                 </div>
-				
-				<div class="col-md-4">
-					<p>Name
-					<ul>
-						<li>Short Bio:</li>
-						<li>Specialties:</li>
-						<li>Experience:</li>
-					</ul>
-					</p>
-				</div>
-				
-				<div class="col-md-2">
-					<img src="C:\Users\Perry\Documents\EECS 647 Homework\Website\closeQuartersScuba\img\insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
-				</div>
-				
-				
-				<div class="col-md-4">
-					<p>Name
-					<ul>
-						<li>Short Bio:</li>
-						<li>Specialties:</li>
-						<li>Experience:</li>
-					</ul>
-					</p>
-				</div>			
-				
-				<div class="col-md-2">
-					<img src="C:\Users\Perry\Documents\EECS 647 Homework\Website\closeQuartersScuba\img\insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
-				</div>
-				
-				
-				<div class="col-md-4">
-					<p>Name
-					<ul>
-						<li>Short Bio:</li>
-						<li>Specialties:</li>
-						<li>Experience:</li>
-					</ul>
-					</p>
-				</div>
-				
-				<div class="col-md-2">
-					<img src="C:\Users\Perry\Documents\EECS 647 Homework\Website\closeQuartersScuba\img\insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
-				</div>			
-				
-				<div class="col-md-4">
-					<p>Name
-					<ul>
-						<li>Short Bio:</li>
-						<li>Specialties:</li>
-						<li>Experience:</li>
-					</ul>
-					</p>
-				</div>
-				<div class="col-md-2">
-					<img src="C:\Users\Perry\Documents\EECS 647 Homework\Website\closeQuartersScuba\img\insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
-				</div>
-				
-				<div class="col-md-4">
-					<p>Name
-					<ul>
-						<li>Short Bio:</li>
-						<li>Specialties:</li>
-						<li>Experience:</li>
-					</ul>
-					</p>
-				</div>
-				
-				<div class="col-md-2">
-					<img src="C:\Users\Perry\Documents\EECS 647 Homework\Website\closeQuartersScuba\img\insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
-				</div>			
-				
-				
+				<div class="col-md-12">
+                    <p>Dive Master</p>
+					
+						<ul>Description:</ul>
+						<ul>Pre-Requisites:</ul>
+						<ul>Price:</ul>
+						<ul>Date Offered:</ul>
+						<ul>Instructor:</ul>
+					
+                </div>
+				<div class="col-md-12">
+                    <p>Dive Instructor</p>
+					
+						<ul>Description:</ul>
+						<ul>Pre-Requisites:</ul>
+						<ul>Price:</ul>
+						<ul>Date Offered:</ul>
+						<ul>Instructor:</ul>	
+					
+                </div>
+				<div class="col-md-12">
+                    <p>Deep Diving</p>
+					
+						<ul>Description:</ul>
+						<ul>Pre-Requisites:</ul>
+						<ul>Price:</ul>
+						<ul>Date Offered:</ul>
+						<ul>Instructor:</ul>					
+					
+                </div>
                 <div class="clearfix"></div>
             </div>
         </div>
+     
 
     </div>
     <!-- /.container -->

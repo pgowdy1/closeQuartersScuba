@@ -1,3 +1,15 @@
+<?php
+/* ---------------------------------------------------------*/
+	/* -- PHP SETUP ROOT PATH									*/
+	/* -- ------------------------------------------------------*/
+	$mRootpath = "";
+	$mFilepath = explode('/',dirname(__DIR__));
+	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
+	define('ROOT_PATH', $mRootpath);
+	//include ROOT_PATH.'databaseAccessFunctions.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,10 +24,10 @@
     <title>Staff</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/closequarters.css" rel="stylesheet">
+    <link href="../css/closequarters.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -32,7 +44,7 @@
 
 <body>
 
-    <div class="brand">Trips</div>
+    <div class="brand">Staff</div>
    
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -52,22 +64,22 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="courses.html">Courses</a>
+                        <a href="courses.php">Courses</a>
                     </li>
                     <li>
-                        <a href="trips.html">Trips</a>
+                        <a href="trips.php">Trips</a>
                     </li>
                     <li>
-                        <a href="photography.html">Photography</a>
+                        <a href="photography.php">Photography</a>
                     </li>
 					<li>
-						<a href="gear.html">Gear</a>
+						<a href="gear.php">Gear</a>
 					</li>
 					<li>
-						<a href="staff.html">Staff</a>
+						<a href="staff.php">Staff</a>
 					</li>
                 </ul>
             </div>
@@ -76,57 +88,93 @@
         <!-- /.container -->
     </nav>
 
-    <div class="container">	
-		<div class="row">
-			<div class="col-md-12">
-				<img src="C:\Users\Perry\Documents\EECS 647 Homework\Website\closeQuartersScuba\img\cozumel-modified.jpg" class="img-responsive" alt="Cozumel">
-			</div>
-		</div>
-		<div class="box custom1">
-			<div class="row">
-				<div id="cozumelDescrip" class="col-md-12">
-					<p>
-					<ul>Trip: Cozumel</ul>
-					<ul>Price: $1700.00</ul>
-					<ul>Dive Sites: NULL</ul> 
+    <div class="container">
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Staff                        
+                    </h2>
+                    <hr>
+                </div>
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
 					</p>
 				</div>
-			</div>
-		</div>
-		
-		<div id="hawaiiImg" class="row">
-			<div class="col-md-12">
-				<img src="C:\Users\Perry\Documents\EECS 647 Homework\Website\closeQuartersScuba\img\hawaii-modified.jpg" class="img-responsive" alt="Hawaii">
-			</div>
-		</div>
-		<div class="box custom1">
-			<div class="row">
-				<div id="hawaiiDescrip" class="col-md-12">
-					<p>
-					<ul>Trip: Hawaii</ul>
-					<ul>Price: $2300.00</ul>
-					<ul>Dive Sites: NULL</ul> 
+				
+				<div class="col-md-2">
+					<img src="insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>
+				
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
+					</p>
+				</div>			
+				
+				<div class="col-md-2">
+					<img src="insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>
+				
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
 					</p>
 				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-md-12">
-				<img src="C:\Users\Perry\Documents\EECS 647 Homework\Website\closeQuartersScuba\img\maldives-modified.jpg" class="img-responsive" alt="Cozumel">
-			</div>
-		</div>
-		<div class="box custom1">
-			<div class="row">
-				<div id="maldivesDescrip" class="col-md-12">
-					<p>
-					<ul>Trip: The Maldives</ul>
-					<ul>Price: $3300.00</ul>
-					<ul>Dive Sites: NULL</ul> 
+				
+				<div class="col-md-2">
+					<img src="insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>			
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
 					</p>
 				</div>
-			</div>
-		</div>
+				<div class="col-md-2">
+					<img src="insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
+					</p>
+				</div>
+				
+				<div class="col-md-2">
+					<img src="insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>			
+				
+				
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
     </div>
     <!-- /.container -->
 

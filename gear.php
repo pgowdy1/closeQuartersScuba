@@ -1,3 +1,15 @@
+<?php
+/* ---------------------------------------------------------*/
+	/* -- PHP SETUP ROOT PATH									*/
+	/* -- ------------------------------------------------------*/
+	$mRootpath = "";
+	$mFilepath = explode('/',dirname(__DIR__));
+	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
+	define('ROOT_PATH', $mRootpath);
+	//include ROOT_PATH.'databaseAccessFunctions.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +44,7 @@
 
 <body>
 
-    <div class="brand">Courses</div>
+    <div class="brand">Gear</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -46,28 +58,28 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Close Quarters Scuba</a>
+                <a class="navbar-brand" href="index.php">Close Quarters Scuba</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="courses.html">Courses</a>
+                        <a href="courses.php">Courses</a>
                     </li>
                     <li>
-                        <a href="trips.html">Trips</a>
+                        <a href="trips.php">Trips</a>
                     </li>
                     <li>
-                        <a href="photography.html">Photography</a>
+                        <a href="photography.php">Photography</a>
                     </li>
 					<li>
-						<a href="gear.html">Gear</a>
+						<a href="gear.php">Gear</a>
 					</li>
 					<li>
-						<a href="staff.html">Staff</a>
+						<a href="staff.php">Staff</a>
 					</li>
                 </ul>
             </div>
@@ -77,59 +89,51 @@
     </nav>
 
     <div class="container">
+		<div class="row">
+			<div class="box aut">
+				<div class="col-md-2">
+					<button type="button" class="btn btn-primary btn-block btn-lg">Fins</button>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-primary btn-block btn-lg">Snorkels</button>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-primary btn-block btn-lg">Masks</button>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-primary btn-block btn-lg">BCDs</button>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-primary btn-block btn-lg">Wetsuits</button>
+				</div>
 
-        <div class="row">
-            <div class="box" >
-                <div class="col-md-12">          
-                    <h2 class="text-left-side">
-                        <strong>Courses</strong>
-                    </h2> 
-                </div>             
-                <div class="col-md-12">
-                    <p>Rescue Diver</p>
-					
-						<ul>Description:</ul>
-						<ul>Pre-Requisites:</ul>
-						<ul>Price:</ul>
-						<ul>Date Offered:</ul>
-						<ul>Instructor:</ul>
-						
-                </div>
-				<div class="col-md-12">
-                    <p>Dive Master</p>
-					
-						<ul>Description:</ul>
-						<ul>Pre-Requisites:</ul>
-						<ul>Price:</ul>
-						<ul>Date Offered:</ul>
-						<ul>Instructor:</ul>
-					
-                </div>
-				<div class="col-md-12">
-                    <p>Dive Instructor</p>
-					
-						<ul>Description:</ul>
-						<ul>Pre-Requisites:</ul>
-						<ul>Price:</ul>
-						<ul>Date Offered:</ul>
-						<ul>Instructor:</ul>	
-					
-                </div>
-				<div class="col-md-12">
-                    <p>Deep Diving</p>
-					
-						<ul>Description:</ul>
-						<ul>Pre-Requisites:</ul>
-						<ul>Price:</ul>
-						<ul>Date Offered:</ul>
-						<ul>Instructor:</ul>					
-					
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-     
-
+			</div>
+		</div>
+    </div>
+    
+    <div class="container">
+    	<div class="row">
+    		<div class="box">
+    			<div class="col-md-12">
+    				<div class="table-responsive">
+    					<table class="table table-hover">
+    						    <tr>
+    								<th>Model Number</th>
+    								<th>Name</th>
+    								<th>Brand</th>
+    								<th>Price</th>
+    							</tr> 
+    							<tr>
+    								<td>1</td>
+    								<td>SX-12 Pro</td>
+    								<td>ScubaPro</td>
+    								<th>$299.99</th>
+    							</tr>   				
+    					</table>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
     </div>
     <!-- /.container -->
 

@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Start Bootstrap - Business Casual Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
@@ -90,20 +90,12 @@ hr {
     background: rgba(255,255,255,0.9);
 }
 
-.custom1 {
-	width:970px; 
-}
-
 #firstGalleryRow {
 	padding-bottom:15px; 
 }
 
 #secondGalleryRow {
 	padding-bottom:15px; 
-}
-
-#cozumelDescrip {
-	
 }
 
 .intro-text {
@@ -140,6 +132,10 @@ footer p {
 	color: white; 
     margin: 0;
     padding: 50px 0;
+}
+
+.table{
+	font-size: large;	
 }
 
 @media screen and (min-width:768px) {

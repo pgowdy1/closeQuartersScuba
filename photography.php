@@ -1,3 +1,14 @@
+<?php
+/* ---------------------------------------------------------*/
+	/* -- PHP SETUP ROOT PATH									*/
+	/* -- ------------------------------------------------------*/
+	$mRootpath = "";
+	$mFilepath = explode('/',dirname(__DIR__));
+	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
+	define('ROOT_PATH', $mRootpath);
+	//include ROOT_PATH.'databaseAccessFunctions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,28 +57,28 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Close Quarters Scuba</a>
+                <a class="navbar-brand" href="index.php">Close Quarters Scuba</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="courses.html">Courses</a>
+                        <a href="courses.php">Courses</a>
                     </li>
                     <li>
-                        <a href="trips.html">Trips</a>
+                        <a href="trips.php">Trips</a>
                     </li>
                     <li>
-                        <a href="photography.html">Photography</a>
+                        <a href="photography.php">Photography</a>
                     </li>
 					<li>
-						<a href="gear.html">Gear</a>
+						<a href="gear.php">Gear</a>
 					</li>
 					<li>
-						<a href="staff.html">Staff</a>
+						<a href="staff.php">Staff</a>
 					</li>
                 </ul>
             </div>

@@ -1,3 +1,15 @@
+<?php
+/* ---------------------------------------------------------*/
+	/* -- PHP SETUP ROOT PATH									*/
+	/* -- ------------------------------------------------------*/
+	$mRootpath = "";
+	$mFilepath = explode('/',dirname(__DIR__));
+	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
+	define('ROOT_PATH', $mRootpath);
+	//include ROOT_PATH.'databaseAccessFunctions.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +21,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Courses</title>
+    <title>Staff</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,8 +44,8 @@
 
 <body>
 
-    <div class="brand">Gear</div>
-
+    <div class="brand">Staff</div>
+   
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -46,28 +58,28 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Close Quarters Scuba</a>
+                <a class="navbar-brand" href="index.php">Close Quarters Scuba</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+               <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="courses.html">Courses</a>
+                        <a href="courses.php">Courses</a>
                     </li>
                     <li>
-                        <a href="trips.html">Trips</a>
+                        <a href="trips.php">Trips</a>
                     </li>
                     <li>
-                        <a href="photography.html">Photography</a>
+                        <a href="photography.php">Photography</a>
                     </li>
 					<li>
-						<a href="gear.html">Gear</a>
+						<a href="gear.php">Gear</a>
 					</li>
 					<li>
-						<a href="staff.html">Staff</a>
+						<a href="staff.php">Staff</a>
 					</li>
                 </ul>
             </div>
@@ -78,26 +90,91 @@
 
     <div class="container">
 
-		<div class="row">
-			<div class="box aut">
-				<div class="col-lg-12">
-					<!--Drop Down Menu Design-->
-					<div class="dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Gear Selection
-						<span class="caret">
-						</span>
-						</button>
-							<ul class="dropdown-menu">
-								<li><a href="#">Fins </a></li>
-								<li><a href="#">Snorkel </a></li>
-								<li><a href="#">Mask </a></li>
-								<li><a href="#">BCD </a></li>
-								<li><a href="#">Wetsuit </a></li>
-							</ul>
-					</div>
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Staff                        
+                    </h2>
+                    <hr>
+                </div>
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
+					</p>
 				</div>
-			</div>
-		</div>
+				
+				<div class="col-md-2">
+					<img src="img/insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>
+				
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
+					</p>
+				</div>			
+				
+				<div class="col-md-2">
+					<img src="img/insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>
+				
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
+					</p>
+				</div>
+				
+				<div class="col-md-2">
+					<img src="img/insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>			
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
+					</p>
+				</div>
+				<div class="col-md-2">
+					<img src="img/insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>
+				
+				<div class="col-md-4">
+					<p>Name
+					<ul>
+						<li>Short Bio:</li>
+						<li>Specialties:</li>
+						<li>Experience:</li>
+					</ul>
+					</p>
+				</div>
+				
+				<div class="col-md-2">
+					<img src="img/insert-picture-here.jpg" alt="Employee Picture" style="width:150px;height:200px;">
+				</div>			
+				
+				
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
     </div>
     <!-- /.container -->
 
