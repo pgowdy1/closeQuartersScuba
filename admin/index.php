@@ -1,6 +1,6 @@
 
 <?php
-	 
+ 
 	$username = $_POST['u_name_textbox'];
 	$password = $_POST['password_textbox'];
 	 
@@ -11,107 +11,7 @@
 	$mFilepath = explode('/',dirname(__DIR__));
 	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
 	define('ROOT_PATH', $mRootpath);
-	
-	/* ---------------------------------------------------------*/
-	/* -- PHP ERROR REPORTING									*/
-	/* -- ------------------------------------------------------*/
-	error_reporting(E_ALL);
-	ini_set("display_errors", 1);
-	
-	/* ---------------------------------------------------------*/
-	/* -- PHP DATABASE CONNECTION 								*/
-	/* -- ------------------------------------------------------*/
-	
-	 
-	/*  
-	if(!$result){	
-		echo mysql_errno($database) . ": " . mysql_error($database). "<br />";	
-		echo $sql . "<br />";	
-		return;
-	}
-	*/
-	/*
-	$msg ='';
-	if(isset($username, $password)){
-		ob_start(); 
-			include('../config.php');
-			$myusername = stripslashes($username);
-			$mypassword = stripslashes($password);
-			$myusername = mysql_real_escape_string($dbC, $myusername);
-			$mypassword = mysqli_real_escape_string($dbc, $mypassowrd);
 			
-			$sql = "SELECT * FROM ADMINLOGIN WHERE uname='$myusername' AND password='$mypassword'";
-			
-			$result=mysqli_query($dbC, $sql);
-    		// Mysql_num_row is counting table row
-    		$count=mysqli_num_rows($result);
-    			// If result matched $myusername and $mypassword, table row must be 1 row
-    			if($count==1){
-       			 // Register $myusername, $mypassword and redirect to file "admin.php"
-       				session_register("admin");
-        			session_register("password");
-        			$_SESSION['name']= $myusername;
-        			header("location:index.php");
-    			}
-    			else{
-        			$msg = "Wrong Username or Password. Please retry";
-        			header("location:../index.php?msg=$msg");
-    			}
-    			ob_end_flush();
-    			
-    else{
-    	header("location:login.php?msg=Please enter some username and password");
-	}
-	*/
-		//The user entered a login that is in the ADMINLOGIN database.
-		
-		/*
-		echo "<pre>";
-		echo "Successful Login. You can now update the inventory.";
-		echo "</pre>";	
-	
-		$databaseTest = @mysql_connect('mysql.eecs.ku.edu', '$username', '$password');
-		if(!$databaseTest) {
-			die('Could not connect: ' . mysql_error());
-		}
-		if(!mysql_select_db($username, $databaseTest)){
-			die('Could not select database: ' . mysql_error());
-		}
-		
-		if(isset($_POST['u_name_textbox'])){
-			$uname_var		=  mysql_real_escape_string($_POST['u_name_textbox']); //mysql_real_escape_string built in function to prevent injection
-		}else{
-			$uname_var		=  "dont let me in";
-		}
-	
-		if(isset($_POST['password_textbox'])){
-			$password_var		=  mysql_real_escape_string($_POST['password_textbox']);
-		}else{
-			$password_var		=  "dont let me in";
-		}	
-		*/
-	
-	
-		
-		/*
-	$sql="SELECT * FROM ADMINLOGIN";
-	$result = mysql_query($sql, $database);   
-	if(!$result){
-	
-		echo mysql_errno($database) . ": " . mysql_error($database). "<br />";	
-		echo $sql . "<br />";	
-		return;
-	}
-
-	while($row=mysql_fetch_array($result)){
-		echo "<pre>";
-		//var_dump($row);
-		echo $row[0];    
-		echo "</pre>";
-		
-	}
-	*/
-	
 ?>
 
 <!DOCTYPE html>
@@ -233,7 +133,3 @@
 </body>
 
 </html>
-
-<?php
-mysql_close($databaseTest);
-?>

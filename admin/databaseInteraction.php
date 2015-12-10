@@ -55,14 +55,7 @@
 		$sqlQuery = "SELECT * FROM GEAR"; 
 		return mysql_query($sqlQuery,$database); 
 	}
-	/*
-	function AddGearData($database){
-		$sqlQuery = 'INSERT INTO GEAR(name,brand,price,type) '.
-	 				'VALUES ("TEST","TEST","TEST","TEST") ';
-		$retval = mysql_query($sqlQuery,$database);
-	}
-	*/
-	
+		
 	/* ---------------------------------------------------------*/
 	/* -- Construct HTML Objects								*/
 	/* -- ------------------------------------------------------*/
