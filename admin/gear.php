@@ -6,10 +6,8 @@
 	$mRootpath = "";
 	$mFilepath = explode('/',dirname(__DIR__));
 	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
-	define('ROOT_PATH', $mRootpath);
-	
-	session_start();
-	
+	define('ROOT_PATH', $mRootpath);	 	
+		
 ?>
 
 
@@ -54,7 +52,7 @@
     			}else if(constructionType == 'wetsuitsTable'){
     				$('#gearTable').html(data);
     			}
-    		
+		
     	});   		       	
     }
     
@@ -145,7 +143,6 @@
 				hideTable();
 				showWetsuitsTable();
 			});
-
 			
 			$('body').on('click','#submitButton',function(e){
 				if(!$("#deleteField").is(":checked")){
@@ -205,12 +202,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.php">Home</a>
-                    </li>
-                     <li>
-						<a href="gear.php">Gear</a>
-					</li>
-					<li>
 						<a href="../index.php">Exit Admin Mode</a>
 					</li>
 				</ul>

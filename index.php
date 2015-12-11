@@ -7,7 +7,7 @@
 	$mFilepath = explode('/',dirname(__DIR__));
 	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
 	define('ROOT_PATH', $mRootpath);
-		
+			
 ?>
 
 
@@ -45,8 +45,8 @@
 
 <body>
 
-    <div class="brand">Close Quarters Scuba</div>
-    <div class="address-bar">1949 Lawrence Ct. | Kansas City, KS 66103 | 316.249.2010</div>
+   <div class="brand">Close Quarters Scuba</div>
+   <div class="address-bar">1949 Lawrence Ct. | Kansas City, KS 66103 | 316.249.2010</div>
 
     <!-- Navigation -->
    <nav class="navbar navbar-default" role="navigation">

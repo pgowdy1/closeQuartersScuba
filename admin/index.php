@@ -1,9 +1,10 @@
 
 <?php
- 
-	$username = $_POST['u_name_textbox'];
+
+ 	session_start();
+ 	$username = $_POST['u_name_textbox'];
 	$password = $_POST['password_textbox'];
-	 
+ 	 
 	/* ---------------------------------------------------------*/
 	/* -- PHP SETUP ROOT PATH									*/
 	/* -- ------------------------------------------------------*/
@@ -12,6 +13,36 @@
 	foreach($mFilepath as $f){$mRootpath = $mRootpath.$f."/";if($f == "public_html"){break;}}
 	define('ROOT_PATH', $mRootpath);
 			
+	$database = @mysql_connect('mysql.eecs.ku.edu', $username, $password);
+	if(!$database) {
+		die('Could not connect: ' . mysql_error());
+	}
+	if(!mysql_select_db($username, $database)){
+		die('Could not select database: ' . mysql_error());
+	}
+	
+	if(isset($_POST['u_name_textbox'])){
+		$uname_var		=  mysql_real_escape_string($_POST['u_name_textbox']); //mysql_real_escape_string built in function to prevent injection
+	}else{
+		$uname_var		=  "dont let me in";
+	}
+	
+	if(isset($_POST['password_textbox'])){
+		$password_var		=  mysql_real_escape_string($_POST['password_textbox']);
+	}else{
+		$password_var		=  "dont let me in";
+	}
+	
+	$sql="SELECT * FROM ADMINLOGIN WHERE uname='$uname_var' AND password='$password_var'";
+	$result = mysql_query($sql, $database);   
+	if(!$result){	
+		echo mysql_errno($database) . ": " . mysql_error($database). "<br />";	
+		echo $sql . "<br />";	
+		return;
+	}else{
+		$_SESSION['admin'] = $username;
+		$_SESSION['aPass'] = $password; 
+	} 
 ?>
 
 <!DOCTYPE html>
@@ -69,9 +100,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.php">Home</a>
-                    </li>
-                    <li>
 						<a href="gear.php">Gear</a>
 					</li>
 					<li>
@@ -89,7 +117,7 @@
         <div class="row">
         	<div class="box">
             	<div class="col-md-2">
-            		<form method="post" action="index.php">
+            		<form method="post" action="../index.php">
             			<label>username</label>
             			<input type="text" name="u_name_textbox" />
             		
