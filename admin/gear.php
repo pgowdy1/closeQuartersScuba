@@ -9,11 +9,7 @@
 	define('ROOT_PATH', $mRootpath);
 	
 	session_start();
-
-	if ($_SESSION['loggedIn'] != "true") {
-    	header("Location: ../index.php");
-	}
-
+	
 ?>
 
 
@@ -40,27 +36,35 @@
     var modelNumVar = "";
     var brandVar = "";
     var priceVar = ""; 
-    var typeVar = ""; 
+    var typeVar = "";
+    var deleteVar = 0;  
     
     function AjaxPost_Construct(constructionType, updateVar){   
     	$.post("databaseInteraction.php", {constructiontype: constructionType, update: updateVar}, function(data,status){
- 
     		    if(constructionType == 'gearTable'){    				 
     				$('#gearTable').html(data);   			 
     			}else if(constructionType == 'finsTable'){   			 
     				$('#gearTable').html(data); 
-    			}
-    			else if(constructionType == 'snorkelsTable'){
+    			}else if(constructionType == 'snorkelsTable'){
+    				$('#gearTable').html(data);
+    			}else if(constructionType == 'masksTable'){
+    				$('#gearTable').html(data);
+    			}else if(constructionType == 'bcdsTable'){
+    				$('#gearTable').html(data);
+    			}else if(constructionType == 'wetsuitsTable'){
     				$('#gearTable').html(data);
     			}
     		
     	});   		       	
     }
     
-    function AjaxComplex_Construct(constructionType, updateVar){
-    	$.post("databaseInteraction.php", {constructiontype: constructionType, update: updateVar, modelNum: modelNumVar, name: nameVar, brand: brandVar, price: priceVar, type: typeVar}, function(data,status){   		
-    		if(constructionType == 'gearTable' && updateVar == 1){      					
+    function AjaxComplex_Construct(constructionType, updateVar){    		   	   	 
+    	$.post("databaseInteraction.php", {constructiontype: constructionType, update: updateVar, modelNum: modelNumVar, name: nameVar, brand: brandVar, price: priceVar, type: typeVar, deleteFlag: deleteVar}, function(data,status){   		
+    		if(constructionType == 'gearTable' && updateVar == 1){    			      					
     			$('#gearTable').html(data);
+    		}else if(constructionType == 'gearTable' && updateVar == 0){     			  			 
+    			$('#gearTable').html(data);
+    			deleteVar = 0;     			
     		}
     	}); 
     }
@@ -72,7 +76,10 @@
     	function showTable(){	AjaxPost_Construct('gearTable',0);}
     	function hideTable(){	$('#gearTable').html('');}
     	function showFinsTable() {	AjaxPost_Construct('finsTable',0);}
-    	function showSnorkelsTable() {	AjaxPost_Construct('snorkelsTable',0);}  	    	   	
+    	function showSnorkelsTable() {	AjaxPost_Construct('snorkelsTable',0);}
+    	function showMasksTable() {	AjaxPost_Construct('masksTable',0);} 
+    	function showBCDsTable() {	AjaxPost_Construct('bcdsTable',0);}
+    	function showWetsuitsTable() {	AjaxPost_Construct('wetsuitsTable',0);}  	    	   	
     </script>
     
     <!-- JQuery Database Changes -->
@@ -85,6 +92,16 @@
     		typeVar = document.getElementById("typeField").value;     	 
     		AjaxComplex_Construct('gearTable',1); 
     		  				
+    	}
+    	
+    	function deleteGear(){
+    	
+    		nameVar = document.getElementById("nameField").value;    		
+    		brandVar = document.getElementById("brandField").value; 
+    		priceVar = document.getElementById("priceField").value;
+    		typeVar = document.getElementById("typeField").value;
+    		deleteVar = 1;     	 
+    		AjaxComplex_Construct('gearTable',0);     	
     	}
     </script>
 
@@ -111,11 +128,38 @@
 				showSnorkelsTable();
 			});
 			
-			$('body').on('click','#submitButton',function(e){
-				e.preventDefault();				 
+			$('body').on('click','#masksButton',function(e){
+				e.preventDefault();
 				hideTable();
-				addGear();
-				showTable(); 
+				showMasksTable();
+			});
+
+			$('body').on('click','#bcdsButton',function(e){
+				e.preventDefault();
+				hideTable();
+				showBCDsTable();
+			});
+
+			$('body').on('click','#wetsuitsButton',function(e){
+				e.preventDefault();
+				hideTable();
+				showWetsuitsTable();
+			});
+
+			
+			$('body').on('click','#submitButton',function(e){
+				if(!$("#deleteField").is(":checked")){
+					e.preventDefault();				 
+					hideTable();
+					addGear();
+					showTable(); 
+				}
+				
+				else{ 
+					hideTable();
+					deleteGear();
+					showTable();
+				}
 			}); 
 		});					
 	</script>
@@ -189,13 +233,13 @@
 					<button id="snorkelsButton" type="button" class="btn btn-primary btn-block btn-lg">Snorkels</button>
 				</div>
 				<div class="col-md-2">
-					<button type="button" class="btn btn-primary btn-block btn-lg">Masks</button>
+					<button id="masksButton" type="button" class="btn btn-primary btn-block btn-lg">Masks</button>
 				</div>
 				<div class="col-md-2">
-					<button type="button" class="btn btn-primary btn-block btn-lg">BCDs</button>
+					<button id="bcdsButton" type="button" class="btn btn-primary btn-block btn-lg">BCDs</button>
 				</div>
 				<div class="col-md-2">
-					<button type="button" class="btn btn-primary btn-block btn-lg">Wetsuits</button>
+					<button id="wetsuitsButton" type="button" class="btn btn-primary btn-block btn-lg">Wetsuits</button>
 				</div>
 
 			</div>
@@ -223,6 +267,8 @@
    						
    						<label>Type</label>
    						<input id="typeField" type="text" name="type_textbox">
+   						
+   						<label><input id="deleteField" type="checkbox" value="checked" name="delete_checkbox">Delete</label>
    																
    						<button id="submitButton" type="submit">Submit</button>
    					</form>
@@ -230,10 +276,11 @@
    				<div class="col-md-12"> <br>
    					<p>Note - In the Type field please enter one of the following:<br>
    						fins <br>
-   						snorkels <br>
+   						snorkel <br>
    						masks <br>
    						bcds <br>
-   						wetsuits <br>	
+   						wetsuits <br> <br> <br>
+   						Delete - Simply type the name of the item you want to delete.	
    					</p>
    				</div>
    			</div>

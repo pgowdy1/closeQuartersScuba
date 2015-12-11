@@ -21,12 +21,12 @@
 	
 	if ($count == 1) {
 	    $_SESSION['loggedIn'] = "true";
-	    header("Location: admin/index.php"); // This is wherever you want to redirect the user to
+	    header("Location: /admin/index.php"); // This is wherever you want to redirect the user to
 	}
-	/*
+	
 	else {
 	    $_SESSION['loggedIn'] = "false";
 	    header("Location: index.php"); // Wherever you want the user to go when they fail the login
 	}
-	*/
+	
 ?>
